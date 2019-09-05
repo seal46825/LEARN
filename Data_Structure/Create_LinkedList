@@ -1,0 +1,70 @@
+/* link list (連結串列) */
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+/* 定義結構型態 */
+typedef struct link_node{
+    int data;
+    struct link_node *next;
+} NODE;
+
+/* 產生新節點 */
+NODE *new_node(int data){
+    NODE *node;
+    node = (NODE *) malloc(sizeof(NODE)); /* 動態宣告空間 <stdlib.h> */
+    if(node == NULL) return NULL; // 記憶體不足
+    node->data = data;
+    node->next = NULL;
+    return node;
+}
+
+/* 加入新的Node於最後 */
+NODE *push_node(NODE *head, int data){
+    NODE *node = new_node(data); /*產生新節點*/
+    if(head == NULL)
+        head = node; // 加入第一個新節點
+    else{
+        NODE *ptr = head;
+        while( ptr->next != NULL)  // 取得最後一個節點
+            ptr = ptr->next;
+        ptr->next = node;
+    }
+    return head;
+}
+
+/* 印出所有串列的所有資料 */
+int traverse(NODE *head){
+    NODE *ptr = head;
+    while(ptr != NULL){
+        printf("%d\n", ptr->data);
+        ptr = ptr->next;
+    }
+    return 1;
+}
+
+/*主程式*/
+int main(){
+    NODE *head = NULL;
+    /*注意: 因為此範例僅在main宣告 *head, 但空間配置malloc是在 new_node(), 所以要回傳head這個指標才OK, 因為此處非call-by-address, 如果要call-by-address則必須在main就已經配置空間, 無倫是malloc存在HEAP或是給初始值存在STACK都可以! */
+    head = push_node(head, 13);
+    head = push_node(head,2);
+    head = push_node(head,7);
+    head = push_node(head,9);
+    head = push_node(head,14);
+    traverse(head);
+
+    //上面是預設的資料 下面可以再加入新的
+    int a;
+    while(1){
+        printf("輸入1加入資料 輸入0顯示結果:");
+        scanf("%d",&a);
+        if(a==0)
+            break;
+        push_node(head,a);
+    }
+    puts("結果為:");
+    head=traverse(head);
+
+    return 0;
+}
