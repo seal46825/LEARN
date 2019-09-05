@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main(void)
+{
+    int (*a)[10];  /* A pointer to an array */
+    int d[10];     /* The actual array */
+
+    a = &d;  /* Make `d` point to `a` */
+
+    /* Use the pointer dereference operator (unary prefix `*`)
+       to access the actual array `d` points to */
+    (*a)[0] = 7;
+    (*a)[1] = 10;
+
+    /* Double dereference is okay to access the first element of the
+       arrat `d` points to */
+    printf("%d\n", **a);
+    //上面那行可看出a是雙重指標
+
+
+    return 0;
+}
