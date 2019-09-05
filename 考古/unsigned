@@ -1,0 +1,13 @@
+
+#include <stdio.h>
+
+
+int main()
+{
+    unsigned int a = 6;
+    int b = -20;
+    (a+b > 6) ? puts("a+b > 6") : puts("a+b <= 6");
+    printf("a+b=%u\n",a+b); //注意格式碼要用u(unsigned)
+
+    return 0;
+}
