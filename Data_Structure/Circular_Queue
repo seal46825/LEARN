@@ -15,7 +15,7 @@ void PrintQueue();
 int  Enqueue(int);
 int  Dequeue(int *);
 
-void main(void)
+void main(void)  	
 {
    int choose,LoopFlag=1;
    int data,a,b;
