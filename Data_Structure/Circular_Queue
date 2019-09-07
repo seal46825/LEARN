@@ -1,0 +1,73 @@
+
+
+#include <stdio.h>
+#define MAX_ITEM 5
+
+typedef struct stk
+	{
+	   int item[MAX_ITEM];        /*資料欄位*/
+	   int	front;
+	   int	rear;
+	}QUEUE;
+QUEUE q;
+
+void PrintQueue();
+int  Enqueue(int);
+int  Dequeue(int *);
+
+void main(void)
+{
+   int choose,LoopFlag=1;
+   int data,a,b;
+   q.front=0;
+   q.rear=0;
+
+   while(1){
+
+    printf("Enter -1 to dequeue、-2 to print queue\nEnter a data:");
+    scanf("%d",&a);
+    if(a==-1)
+        Dequeue(&b);   //取出的資料會放在b
+    else if(a==-2)
+        PrintQueue();
+    else
+        Enqueue(a);
+   }
+}
+
+
+void PrintQueue()
+{
+   int i;
+   if (q.front == q.rear)
+       return; /* queue empty */
+   for (i=(q.front+1)%MAX_ITEM; i != (q.rear+1)%MAX_ITEM ;i= (i+1)%MAX_ITEM )
+     printf("%d ",q.item[i]);
+   puts("\n");
+}
+
+int Enqueue (int x)
+{
+    if((q.rear+1)%MAX_ITEM == q.front){
+        printf("===The queue has been full.===\n\n");
+        return (0);
+    }
+
+    q.rear=(q.rear+1)% MAX_ITEM;
+    q.item [q.rear]=x;
+    return (1);
+}
+
+int Dequeue (int *tmp)
+{
+    if (q.front == q.rear){
+    printf("===The queue has been empty.===\n\n");
+    return(0);
+    }
+
+    q.front = (q.front+1) % MAX_ITEM;
+    *tmp = q.item[q.front];
+    printf("%d has been dequeue.\n\n",*tmp);
+    return 1;
+}
+
