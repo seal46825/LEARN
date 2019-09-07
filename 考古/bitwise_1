@@ -1,0 +1,169 @@
+前言 : 
+歡迎來到二進位的世界。電腦資料都是以二進位儲存，想當然程式語言的變數也都是以二進位儲存。在 C/C++ 當中有幾個位元運算子： << SHIFT LEFT 、 >> SHIFT RIGHT 、 & AND 、 | OR 、 ^ XOR 、 ~ NOT ，可以對變數進行位元運算。接下來要介紹位元運算的一些用途.
+
+Bitwise operator 介紹 : 
+* << SHIFT LEFT , >> SHIFT RIGHT 
+這兩個運算子的功能主要是移動一個變數中的所有位元，位元向左 / 向右移動之後，最高位 / 最低位的位元會消失，最低位 / 最高位的位元補 0 . 運算範例如下 : 
+
+5 << 1 = 10 // 00101 的全部位元向左移動一位數變成 01010. 
+5 << 2 = 20 // 00101 的全部位元向左移動兩位數變成 10100. 
+5 >> 1 = 2 // 00101 的全部位元向右移動一位數變成 00010. 
+5 >> 2 = 1 // 00101 的全部位元向右移動一位數變成 00001.
+
+在十進位當中，當全部位數向左移動一位時，數值大小會變成原來的十倍，向左移動兩位時，會變成原來的百倍. 這種情形在二進位也是成立的，當全部位元向左移動一位時，會變成原來的兩倍，向左移動兩位時，會變成原來的四倍。至於往右移動也是類似道理，變成了除法而已. 由於電腦進行位元運算比乘法、除法運算快上許多，所以有很多專業的程式設計師，會利用位元運算來取代乘法、除法運算. 優點是程式執行效率增加，缺點是程式碼可讀性變低. 範例如下 : 
+
+view plaincopy to clipboardprint?
+int n = 5;  
+n = n >> 1; // 即是 n = n / 2 之意。  
+/* 該式子也可寫成 n >>= 1 或 n /= 2。 */  
+* & AND 
+
+0 & 0 = 0
+0 & 1 = 0
+1 & 0 = 0
+1 & 1 = 1
+& 的功能是將兩個變數對應的位元進行 AND 邏輯運算，然後產生新變數. & 的特色，就是可以判斷出位元是不是 1 . 例如我們想要數一個變數有幾個位元是 1 , 則可以如下操作 : 
+
+view plaincopy to clipboardprint?
+int n = 19;  // 待測數  
+int digit = sizeof(n) * 8; // 待測數為幾位元.  
+int c = 0; // Counter  
+for(int i=0; i
+{  
+    if(n & (1<
+}  
+printf("Result : %d\n", c);  
+* | OR 
+
+0 | 0 = 0
+0 | 1 = 1
+1 | 0 = 1
+1 | 1 = 1
+| 的功能是將兩個變數對應的位元進行 OR 邏輯運算，然後產生新變數. 其特色，就是把位元強制標記成 1 . 例如我們想要把五位數標成 1 : 
+
+view plaincopy to clipboardprint?
+int mark_5th_bit(int n)  
+{  
+    return n | (1 << 4);  
+}  
+* ^ XOR 
+
+0 ^ 0 = 0
+0 ^ 1 = 1
+1 ^ 0 = 1
+1 ^ 1 = 0
+^ 的功能是將兩個變數對應的位元進行 XOR 邏輯運算，然後產生新變數. 其特色，就是把位元的 0 和 1 顛倒. 例如我們想要顛倒第五位數 : 
+
+view plaincopy to clipboardprint?
+int reverse_5th_bit(int n)  
+{  
+    return n ^ (1 << 4);  
+}  
+* ~ NOT 
+
+~ 0 = 1
+~ 1 = 0
+~ 的功能是顛倒一個變數每一個位元的 0 和 1 . 
+
+Bitwise 應用範例 : 
+- 整數加一與減一 
+
+view plaincopy to clipboardprint?
+// 注意：比直接加一和減一還要慢。  
+int add_one(int x)  
+{  
+    return -~x; // ++x  
+}  
+  
+int sub_one(int x)  
+{  
+    return ~-x; // --x  
+}  
+- 整數變號 
+
+view plaincopy to clipboardprint?
+int negative(int x)  
+{  
+    return ~x + 1;          // -x;  
+}  
+  
+int negative(int x)  
+{  
+    return (x ^ -1) + 1;    // -x;  
+}  
+- 判斷一整數是偶數還是奇數 
+
+view plaincopy to clipboardprint?
+// 若回傳1則為奇數，回傳0則為偶數。  
+int is_odd(int x)  
+{  
+    return x & 1;   // x % 2;  
+}  
+- 整數取絕對值（ 32 位元整數） 
+
+view plaincopy to clipboardprint?
+int abs(int x)  
+{  
+    // x < 0 ? -x : x;  
+    // x >> 31 = 111...111 (如果x是負數) or 000...000 (如果x是正數)  
+    // x ^ (x>>31)  => 如果 x 為負數則將 x 的 0轉1, 1轉0, 如果 x 為正數, 則保持x 不變.  
+    // (x ^ (x >> 31)) - (x >> 31) => 如果 x 為正數則 x-0=x , 如果 x 為負數則 ~x-(-1) = -x    
+    return (x ^ (x >> 31)) - (x >> 31);  
+}  
+- 最低位的位元 1 
+
+view plaincopy to clipboardprint?
+int lowest_bit_1(int x)  
+{  
+    return x & -x;  
+}  
+- 判斷一個整數是不是 2 的次方 
+
+view plaincopy to clipboardprint?
+bool is_power_of_2(int x)  
+{  
+    return (x & -x) == x;  
+}  
+- 交換兩個 int 變數 
+
+view plaincopy to clipboardprint?
+void swap(int& x, int& y)  
+{  
+    x = x ^ y; // x' = x ^ y  
+    y = x ^ y; // y' = x' ^ y = x ^ y ^ y = x  
+    x = x ^ y; // x = x' ^ y' = x ^ y ^ x = y  
+}  
+- 計算有幾個位元是 1 （ 32 位元整數） 
+
+view plaincopy to clipboardprint?
+int count_bits(int x)  
+{  
+    x = (x & 0x55555555) + ((x & 0xaaaaaaaa) >> 1);  
+    x = (x & 0x33333333) + ((x & 0xcccccccc) >> 2);  
+    x = (x & 0x0f0f0f0f) + ((x & 0xf0f0f0f0) >> 4);  
+    x = (x & 0x00ff00ff) + ((x & 0xff00ff00) >> 8);  
+    x = (x & 0x0000ffff) + ((x & 0xffff0000) >> 16);  
+    return x;  
+}  
+  
+int count_bits2(unsigned int n) {  
+    int i=0;  
+    for ( ; n != 0; n >>= 1)  
+        if (n & 1)  
+            ++i;  
+    return i;  
+}  
+- 顛倒位元順序（ 32 位元整數） 
+
+view plaincopy to clipboardprint?
+int reverse_bits(int x)  
+{  
+    x = ((x >> 1) & 0x55555555) | ((x << 1) & 0xaaaaaaaa);  
+    x = ((x >> 2) & 0x33333333) | ((x << 2) & 0xcccccccc);  
+    x = ((x >> 4) & 0x0f0f0f0f) | ((x << 4) & 0xf0f0f0f0);  
+    x = ((x >> 8) & 0x00ff00ff) | ((x << 8) & 0xff00ff00);  
+    x = ((x >> 16) & 0x0000ffff) | ((x << 16) & 0xffff0000);  
+    return x;  
+}  
+
+http://puremonkey2010.blogspot.com/2011/05/c-bitwise-operation.html
