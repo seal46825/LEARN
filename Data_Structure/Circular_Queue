@@ -36,7 +36,7 @@ void main(void)
 }
 
 
-void PrintQueue()
+void PrintQueue()   //將queue印出來
 {
    int i;
    if (q.front == q.rear)
@@ -46,7 +46,7 @@ void PrintQueue()
    puts("\n");
 }
 
-int Enqueue (int x)
+int Enqueue (int x)    //將資料x加入queue
 {
     if((q.rear+1)%MAX_ITEM == q.front){
         printf("===The queue has been full.===\n\n");
@@ -58,7 +58,7 @@ int Enqueue (int x)
     return (1);
 }
 
-int Dequeue (int *tmp)
+int Dequeue (int *tmp)  //queue取出的資料會放在tmp
 {
     if (q.front == q.rear){
     printf("===The queue has been empty.===\n\n");
