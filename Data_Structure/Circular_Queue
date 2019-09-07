@@ -41,7 +41,7 @@ void PrintQueue()   //將queue印出來
    int i;
    if (q.front == q.rear)
        return; /* queue empty */
-   for (i=(q.front+1)%MAX_ITEM; i != (q.rear+1)%MAX_ITEM ;i= (i+1)%MAX_ITEM )
+   for (i=(q.front+1)%MAX_ITEM; i != (q.rear+1)%MAX_ITEM ;i= (i+1)%MAX_ITEM )  //front空的 從front下一個開始 一直印到rear
      printf("%d ",q.item[i]);
    puts("\n");
 }
