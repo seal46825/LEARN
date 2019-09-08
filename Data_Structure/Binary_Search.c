@@ -41,9 +41,9 @@ int BinarySearch(int a[],int n,int key)
         m=(l+r)/2;
         if(key == a[m])
                 return(m);      /*找到,傳回位置*/
-        if(key > a[m])          /*右半部,改便左限*/
+        if(key > a[m])          //目標比m大 把左限改成m+1
                 l=m+1;
-        else                    /*左半部,改便右限*/
+        else                    //目標比m小 把右限改成m-1
                 r=m-1;
     }
 
