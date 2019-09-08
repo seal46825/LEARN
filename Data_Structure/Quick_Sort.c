@@ -18,10 +18,12 @@ int partition(int [],int,int);
 
 void main(void)
 {
-    int a[ARR_NUM]={371,414,19,-81,141,25,56,61,49},i;
+   int a[ARR_NUM]={371,414,19,-81,141,25,56,61,49},i;
+
    printf("排序前 ( before sorting ):\n");
    for(i=0;i < ARR_NUM;i++)
         printf(" %d",a[i]);
+
    quick_sort(a,0,ARR_NUM-1);
 
    printf("\n排序後 ( after sorting ):\n");
