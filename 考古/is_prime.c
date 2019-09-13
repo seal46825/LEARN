@@ -5,6 +5,9 @@ int is_prime(int n)
 {
     int i;
 
+    if(n==1)
+        return 0;
+
     for(i=2;i*i<=n;i++)
     {
         if(n%i==0)
@@ -18,7 +21,7 @@ int is_prime(int n)
 int main()
 {
     int n;
-    n=2;
+    n=11;
 
     if(is_prime(n))
         printf("是質數");
