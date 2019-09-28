@@ -1,4 +1,4 @@
-//易春木的CODE
+//易春木的CODE 有修改過一點
 /* 2.	用鏈結link list製作佇列(Queue) */
 #include <stdio.h>
 #include <stdlib.h>
@@ -80,7 +80,7 @@ void enqueue(int item) // insertion at the end
 	}
 }
 
-// Utility function to return top element in a queue
+// 探測下一個出來的元素是什麼
 int peek()
 {
 	// check for empty queue
