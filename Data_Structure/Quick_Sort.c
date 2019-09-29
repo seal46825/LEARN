@@ -66,7 +66,7 @@ int partition(int a[],int l,int r)
         a[i]=a[j];
         a[j]=temp;
    }
-   //如果交錯 a[j]跟基準值交換  要跟a[i]換也可以 但是記得return也要改成return(j)
+   //如果交錯 a[j]跟基準值交換  要跟a[i]換也可以 但是記得return也要改成return(i)
    temp=a[l];                    
    a[l]=a[j];
    a[j]=temp;
