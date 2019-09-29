@@ -8,7 +8,7 @@ int is_prime(int n)
     if(n==1)
         return 0;
 
-    for(i=2;i*i<=n;i++)
+    for(i=2;i*i<=n;i++)  //注意這裡條件不用設 sqrt(n) 直接用i*i<=n就好
     {
         if(n%i==0)
             return 0;
