@@ -34,30 +34,30 @@ NODE *push_node(NODE *head, int data){
 }
 
 /* 印出所有串列的所有資料 */
-int traverse(NODE *head){
-    NODE *ptr = head;
+int traverse(NODE *ptr){
     while(ptr != NULL){
-        printf("%d\n", ptr->data);
+        printf("%d ", ptr->data);
         ptr = ptr->next;
     }
+    printf("\n");
     return 1;
 }
 
 /*主程式*/
 int main(){
     NODE *head = NULL;
-    /*注意: 因為此範例僅在main宣告 *head, 但空間配置malloc是在 new_node(), 所以要回傳head這個指標才OK, 因為此處非call-by-address, 如果要call-by-address則必須在main就已經配置空間, 無倫是malloc存在HEAP或是給初始值存在STACK都可以! */
+    //加入第一個node的時候 因為原本head==NULL 因此要把新的node返回給head這個指標
     head = push_node(head, 13);
-    head = push_node(head,2);
-    head = push_node(head,7);
-    head = push_node(head,9);
-    head = push_node(head,14);
+    push_node(head,2);
+    push_node(head,7);
+    push_node(head,9);
+    push_node(head,14);
     traverse(head);
 
     //上面是預設的資料 下面可以再加入新的
     int a;
     while(1){
-        printf("輸入1加入資料 輸入0顯示結果:");
+        printf("輸入資料加入串列 輸入0顯示結果:");
         scanf("%d",&a);
         if(a==0)
             break;
