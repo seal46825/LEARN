@@ -25,59 +25,8 @@ TNode *listA;
 void visit(TNode  *);
 void InOrder(TNode  *);  //中序走訪
 TNode  *BstInsert(TNode  *,TNode  *);
-TNode  *BstCreate(void);
 TNode  *BstSearch(TNode  *,int );
 TNode  *BstDelete(TNode  *,int );
-
-int main(int argc, char *argv[])
-{
-    TNode  *p;
-    int choose,data,LoopFlag=1;
-
-    //listA=BstCreate();  //開啟檔案讀裡面的資料 再利用BstInsert來建立二元樹
-
-    while(LoopFlag)
-    {
-        printf("BST中序: ");
-        InOrder(listA);
-        printf("\n(1)插入資料\n(2)搜尋資料\n(3)刪除資料\n(0)結束=>");
-        scanf("%d",&choose);
-
-        switch(choose)
-        {
-            case 0:
-				LoopFlag=0;
-                break;                        /*結束程式*/
-            case 1:
-                printf("請輸入欲建立之資料=>");
-                scanf("%d",&data);
-                p=(TNode *)malloc(sizeof(TNode));
-                p->data=data;
-                listA=BstInsert(listA,p);
-                break;
-            case 2:
-                printf("請輸入欲搜尋之資料=>");
-                scanf("%d",&data);
-                if(BstSearch(listA,data) == NULL)
-                    printf("找不到資料\n");
-                else
-                    printf("找到!!!\n");
-                break;
-            case 3:
-
-                printf("請輸入欲刪除之資料=>");
-                scanf("%d",&data);
-                listA=BstDelete(listA,data);
-
-                break;
-            default:
-                printf("選項錯誤\n");
-        }
-        puts("");
-     }
-     //system("PAUSE");
-	return 0;
-}
 
 void visit(TNode  *p)
 {
@@ -121,32 +70,14 @@ TNode  *BstInsert(TNode  *t,TNode  *p)  //t是root 將設定好的節點p插入
                 r=q;
                 q=q->right_c;
             }
-            else		//如果p的值已經存在於二元樹中 直接return一開始的t回去  
+            else		//如果p的值已經存在於二元樹中 直接return一開始的t回去
                 return(t);
         }
+        //direction的意義在此 有這個最後r才知道要指向左邊還右邊
         if (direction==1)
             r->left_c=p;
         else
             r->right_c=p;
-    }
-    return(t);
-}
-
-TNode  *BstCreate(void)
-{
-    FILE *filedata;
-    int data;
-    TNode  *t,*p;
-
-    filedata=fopen("C:\\Users\\asus\\Google_Drive\\規劃\\C_program\\細談資料結構\\完整程式範例in_C\\CH06\\BST.dat","r");
-
-    t=NULL;
-    while(!feof(filedata))
-    {
-        fscanf(filedata,"%d",&data);
-        p=(TNode *)malloc(sizeof(TNode));
-        p->data=data;
-        t=BstInsert(t,p);
     }
     return(t);
 }
@@ -247,3 +178,54 @@ TNode  *BstDelete(TNode  *t,int key) //t指向樹根  key是要刪除節點的�
     printf("刪除成功!\n");
     return(t);
 }
+
+int main(int argc, char *argv[])
+{
+    TNode  *p;
+    int choose,data,LoopFlag=1;
+
+    //listA=BstCreate();  //開啟檔案讀裡面的資料 再利用BstInsert來建立二元樹
+
+    while(LoopFlag)
+    {
+        printf("BST中序: ");
+        InOrder(listA);
+        printf("\n(1)插入資料\n(2)搜尋資料\n(3)刪除資料\n(0)結束=>");
+        scanf("%d",&choose);
+
+        switch(choose)
+        {
+            case 0:
+				LoopFlag=0;
+                break;                        /*結束程式*/
+            case 1:
+                printf("請輸入欲建立之資料=>");
+                scanf("%d",&data);
+                p=(TNode *)malloc(sizeof(TNode));
+                p->data=data;
+                listA=BstInsert(listA,p);
+                break;
+            case 2:
+                printf("請輸入欲搜尋之資料=>");
+                scanf("%d",&data);
+                if(BstSearch(listA,data) == NULL)
+                    printf("找不到資料\n");
+                else
+                    printf("找到!!!\n");
+                break;
+            case 3:
+
+                printf("請輸入欲刪除之資料=>");
+                scanf("%d",&data);
+                listA=BstDelete(listA,data);
+
+                break;
+            default:
+                printf("選項錯誤\n");
+        }
+        puts("");
+     }
+     //system("PAUSE");
+	return 0;
+}
+
