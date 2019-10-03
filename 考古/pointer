@@ -16,8 +16,9 @@ int main(void)
 
     /* Double dereference is okay to access the first element of the
        arrat `d` points to */
-    printf("%d\n", **a);
-    //上面那行可看出a是雙重指標
+    printf("%d\n", *(*a));
+    printf("%d\n", *(*a+1));
+    //上面兩行輸出分別為7、10 可看出a是雙重指標
 
 
     return 0;
