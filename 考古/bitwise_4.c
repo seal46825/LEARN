@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//如果輸入負數迴圈會無法結束 因為最後會變-1 (sign bit本身)
 int NumberOf1_Solution1(int i)
 {
       int count = 0,j;
