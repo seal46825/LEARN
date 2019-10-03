@@ -7,7 +7,8 @@
 int multiple_of_three(int num) {
     //puts("GO!");
     if (num < 0)
-        num = -num; //為何要正? 不然sign_bit是1會影響
+        num = -num; 
+    //為何要正? 不然最後剩sign_bit是-1會影響 (為何-1? 因為就算移到最右邊他還是sign_bit 會等於-1)
 
     if (num == 0)
         return 1; // true
