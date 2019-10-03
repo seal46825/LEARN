@@ -5,7 +5,9 @@
 int max(int a, int b)
 {
     int diff = a - b;
-    int sign_bit= (unsigned)diff  >> (sizeof(int) * 8 - 1);
+    int sign_bit= (unsigned)diff  >> (sizeof(int) * 8 - 1); 
+    //為何diff要轉unsinged? 不然如果是負的 因為sign_bit是-1 最後的結果會是-1不是1
+    printf("%d\n",sign_bit);
     int array[] = {a, b};
     return array[sign_bit];
 }
