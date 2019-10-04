@@ -6,9 +6,7 @@
 int fib(int n)
 {
     int ans;
-    if(n==0)
-        return 0;
-    if(n==1)
+    if(n==1||n==2)
         return 1;
 
     return(fib(n-1)+fib(n-2));
@@ -30,7 +28,11 @@ int main(void)
 {
     int i,a;
     a=5;
-   printf("%d %d",fib(a),fib2(a));
+    for(a=1;a<13;a++){
+        printf("%3d %3d",fib(a),fib2(a));
+        puts("");
+    }
+
    return 0;
 }
 
