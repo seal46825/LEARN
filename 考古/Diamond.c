@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 int i,j;
@@ -20,6 +19,8 @@ void star1(void){
     }
 }
 
+
+
 void star2(void){   //因為H=5有5行 每一行有五個元素 星星加空白要等於5
     puts("Star2:");
     H=W;
@@ -33,6 +34,37 @@ void star2(void){   //因為H=5有5行 每一行有五個元素 星星加空白�
 }
 
 
+/*最底層是1 每往上一層就+2 加到n為止 以n=5為例:
+55555
+ 333
+  1
+star11為code */
+void star22(n){
+    puts("Star22:");
+    H=(n+1)/2;
+    for(i=0;i<H;i++){
+        for(j=0;j<i;j++)
+            printf(" ");
+        for(j=0;j<n-i*2;j++)
+            printf("%d",n-i*2);
+        puts("");
+    }
+    puts("");
+}
+
+void star23(n){
+    puts("Star23:");
+    H=(n+1)/2;
+    for(i=0;i<H;i++){
+        for(j=0;j<H-i-1;j++)
+            printf(" ");
+        for(j=0;j<i*2+1;j++)
+            printf("%d",n-i*2);
+        puts("");
+    }
+    puts("");
+}
+
 void star3(void){
     puts("Star3:");
     int H=(W+1)/2;
@@ -43,6 +75,7 @@ void star3(void){
             printf("*");
         puts("");
     }
+    puts("");
 
 }
 
@@ -74,10 +107,11 @@ int main()
    int i;
    star1();
    star2();
+   star22(9);
+   star23(9);
    star3();
    star4();
 
 
    return(0);
 }
-
