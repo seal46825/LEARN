@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -22,12 +21,9 @@ int fib2(int n){
 
 int main(void)
 {
-    int i,a;
-    a=5;
-    for(a=1;a<12;a++){
-        printf("%4d",fib2(a));
-        puts("");
-    }
+    int i,n;
+    for(n=1;n<12;n++)
+        printf("%4d \n",fib2(n));
 
    return 0;
 }
