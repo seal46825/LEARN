@@ -20,7 +20,7 @@ unsigned int re(unsigned int x)
     unsigned int reverse_x = 0;                 //全部bits都是0
     for (int i = 0; i < 32; i++) {
         if((x & (1 << i)))                      //檢查哪些bit是1
-            reverse_x  |=  1 << ((32 - 1) - i);   //是1的bit 把reverse_x的對應的翻轉位置改成1
+            reverse_x  |=  1 << (31 - i);   //是1的bit 把reverse_x的對應的翻轉位置改成1
     }
     return reverse_x;
 }
