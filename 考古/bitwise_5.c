@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//原理 a-b 如果結果是正 sign_bit會是0  如果是負則為-1
+
 int max(int a, int b)
 {
     int diff = a - b;
