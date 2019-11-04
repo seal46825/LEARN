@@ -11,6 +11,7 @@ int fib2(int n){
     if (n==2)
         return b;
 
+    //n>=3的時候才會執行到這 從最一開始的a=11 b=12開始累積
     for(int i = 2; i < n; i++){
         int tmp = b;
         b += a;
