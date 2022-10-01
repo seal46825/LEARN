@@ -1,11 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 int main(void)
 {
     int a;
     scanf("%d",&a);
-    float temp=1;
+    float ans;
+    float low = 0, high = a, mid;
     
-    while(a-temp*temp>0.0001)
-        temp+=0.00001;
+    while(abs(a- mid * mid) > 0.0001) {
+        mid = (low + high) / 2;
         
-    printf("%5f",temp);
+        if (mid * mid > a) {
+            high = mid;
+        } else if (mid * mid < a) {
+            low = mid;
+        }
+    }
+    printf("%5f",mid);
 }
