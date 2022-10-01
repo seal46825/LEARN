@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_STACK (100)
+
+int stack[MAX_STACK];
+int top = -1;
+
+int push(int data)
+{
+  if (top >= MAX_STACK) {
+    //full
+    return 0;
+  } else {
+    stack[++top] = data;
+    return 1;
+  }
+}
+
+int pop(void) {
+  if (top == -1) {
+    return -1;
+  } else {
+    return stack[top--];
+  }
+}
